@@ -44,7 +44,6 @@ class Page:
         self.wait.until(
             EC.element_to_be_clickable(locator),
             message=f"Element by locator {locator} is not clickable")
-
     def wait_and_click(self, locator):
         self.wait.until(
             EC.element_to_be_clickable(locator),

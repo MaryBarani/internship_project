@@ -5,7 +5,7 @@ from time import sleep
 
 class MainPage(Page):
 
-    CONNECT_ICON = (By.CSS_SELECTOR, ".get-free-period")
+    CONNECT_ICON = (By.CSS_SELECTOR, ".get-free-period.menu")
 
     def click_connect_company(self):
         self.wait_and_click(self.CONNECT_ICON)
