@@ -10,24 +10,31 @@ def browser_init(context):
     """
     :param context: Behave context
     """
-    # driver_path = ChromeDriverManager().install()
-    # service = Service(driver_path)
-    # context.driver = webdriver.Chrome(service=service)
+    # BrowserStack configuration
+    BROWSERSTACK_CONFIG = {
+        'bstack:options': {
+            'os': 'Windows',
+            'osVersion': '10',
+            'resolution': '1920x1080',
+            'sessionName': 'Internship_Project',
+            'buildName': 'Internship_Project_Build',
+            'userName': 'mary_bCHue6',
+            'accessKey': 'UphCy53ptH9UisefSaqN',
+        },
+        'browserName': 'Chrome',
+        'browserVersion': 'latest',
+    }
 
+    # Initialize WebDriver with capabilities
+    options = webdriver.ChromeOptions()
+    options.set_capability('bstack:options', BROWSERSTACK_CONFIG['bstack:options'])
+    options.set_capability('browserName', BROWSERSTACK_CONFIG['browserName'])
+    options.set_capability('browserVersion', BROWSERSTACK_CONFIG['browserVersion'])
 
-    #Headless
-    # options = webdriver.ChromeOptions()
-    # options.add_argument('--headless')
-    # context.driver = webdriver.Chrome(options=options)
-
-
-    #Firefox
-    driver_path = GeckoDriverManager().install()
-    service = Service(driver_path)
-    context.driver = webdriver.Firefox(service=service)
-
-
-
+    context.driver = webdriver.Remote(
+        command_executor='https://hub-cloud.browserstack.com/wd/hub',
+        options=options
+    )
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
 
