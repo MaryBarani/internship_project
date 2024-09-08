@@ -42,6 +42,12 @@ def browser_init(context):
     context.driver = webdriver.Chrome(service=service)
 
 
+    #Allure_report_Commands
+    # pip install allure_behave
+    # behave - f allure_behave.formatter: AllureFormatter - o Test_Results
+    # brew install allure
+    # allure serve Test_Results
+
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
 
